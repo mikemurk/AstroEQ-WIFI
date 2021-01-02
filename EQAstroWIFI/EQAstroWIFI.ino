@@ -61,7 +61,7 @@ uint8_t serialIndex = 0;
 
 byte data = 0;
 
-boolean ignore = true;  // Because the mount connection seems to share the wire for RX and TX, commands sent to the mount are recieved back, as an "echo", and must be ignored.
+boolean ignore = false;  // Because the mount connection seems to share the wire for RX and TX, commands sent to the mount are recieved back, as an "echo", and must be ignored.
 
 void setup() {
 
@@ -110,9 +110,9 @@ void loop()
               }
         Serial.write(udpBuffer, packetSize);  // forward the recieved data straight to the serial connection to the telescope mount
         ignore = true;    // we need to ignore the first characters that we get from the telescope mount (an echo of our command / garbage) until we get the "=" character that signals the beginning of the actual response
-        delay (20);
-      }
-      
+        delay(15);
+        }
+   
   SerialSize = Serial.available();  // Test for Serial Data Received
 
   if (SerialSize > 0) 
@@ -120,25 +120,36 @@ void loop()
       logger ->print("Serial Bytes Received: ");
       logger ->println(SerialSize);
       serialIndex=0;
-      
+
+      logger ->print("From MCB: ");
       for (int i = 0; i<SerialSize; i++)
             { 
                 byte data=Serial.read();
-                logger ->print("From MCB: ");
-                logger ->println(data);
+                logger ->print(data);
                 serialBuffer[serialIndex] = data;
                 serialIndex++;
              }
-                                                     // Now we send the message recieved from the telescope mount, as an UDP packet to the client app (via WiFi):
-      udp.beginPacket(remoteIp, UDPremoteudpPort); 
-      for (int j = 0; j < SerialSize; j++)
-        {
-          logger->print("UDP Sending: ");
-          logger->println(serialBuffer[j]);
-        }
-      udp.write(serialBuffer, serialIndex);
-      udp.endPacket();
-      yield();
-      serialIndex = 0;
+      byte firstChar = serialBuffer[0];
+      
+      if (firstChar == 61 || firstChar == 33) 
+             {                                               // Now we send the message recieved from the telescope mount, as an UDP packet to the client app (via WiFi):
+              udp.beginPacket(remoteIp, UDPremoteudpPort); 
+              logger->print("UDP Sending: ");
+              
+              for (int j = 0; j < SerialSize; j++)
+                {
+                  logger->print(serialBuffer[j]);
+                }
+                
+              logger->println();
+              udp.write(serialBuffer, serialIndex);
+              udp.endPacket();
+              yield();
+              serialIndex = 0; }
+              else {
+                      yield();
+                      logger->println("**BAD OR NO RESPONSE**");
+                      serialIndex=0;
+                   }
+      }
   }
-}
