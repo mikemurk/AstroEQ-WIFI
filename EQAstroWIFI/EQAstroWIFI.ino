@@ -99,15 +99,18 @@ void loop()
         UDPremoteudpPort = udp.remotePort();
     
         udp.read(udpBuffer, bufferSize); //read the incoming data
+        logger->print("From IP: ");
+        logger->print(remoteIp);
+        logger->print(" / Port: ");
+        logger->print(UDPremoteudpPort);
+        logger->print(" - UDP Data: ");
+        
         for (int j = 0; j < packetSize; j++)  // write it to the log for debugging purposes
               {
-                logger->print("From IP: ");
-                logger->print(remoteIp);
-                logger->print(" / Port: ");
-                logger->print(UDPremoteudpPort);
-                logger->print(" - UDP Data: ");
-                logger->println(udpBuffer[j]);
+                logger->print(udpBuffer[j]);
+                logger->print(" ");
               }
+        logger->println();
         Serial.write(udpBuffer, packetSize);  // forward the recieved data straight to the serial connection to the telescope mount
         ignore = true;    // we need to ignore the first characters that we get from the telescope mount (an echo of our command / garbage) until we get the "=" character that signals the beginning of the actual response
         delay(15);
@@ -121,27 +124,30 @@ void loop()
       logger ->println(SerialSize);
       serialIndex=0;
 
-      logger ->print("From MCB: ");
+      logger ->print("From MCB:                                        ");
       for (int i = 0; i<SerialSize; i++)
             { 
                 byte data=Serial.read();
                 logger ->print(data);
+                logger ->print(" ");
                 serialBuffer[serialIndex] = data;
                 serialIndex++;
              }
+      logger ->println();
       byte firstChar = serialBuffer[0];
       
       if (firstChar == 61 || firstChar == 33) 
              {                                               // Now we send the message recieved from the telescope mount, as an UDP packet to the client app (via WiFi):
               udp.beginPacket(remoteIp, UDPremoteudpPort); 
-              logger->print("UDP Sending: ");
+ //             logger->print("UDP Sending:                                     ");
               
-              for (int j = 0; j < SerialSize; j++)
-                {
-                  logger->print(serialBuffer[j]);
-                }
+ //             for (int j = 0; j < SerialSize; j++)
+ //              {
+ //                 logger->print(serialBuffer[j]);
+ //                 logger->print(" ");
+ //               }
                 
-              logger->println();
+ //             logger->println();
               udp.write(serialBuffer, serialIndex);
               udp.endPacket();
               yield();
