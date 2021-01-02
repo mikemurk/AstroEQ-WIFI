@@ -60,7 +60,7 @@ uint8_t serialBuffer[SerialBufferSize];
 uint8_t serialIndex = 0;
 
 byte data = 0;
-
+bool Wificommand = false;
 boolean ignore = false;  // Because the mount connection seems to share the wire for RX and TX, commands sent to the mount are recieved back, as an "echo", and must be ignored.
 
 void setup() {
@@ -111,9 +111,30 @@ void loop()
                 logger->print(" ");
               }
         logger->println();
+    if (udpBuffer[0] == 58) 
+    { 
+      Wificommand = false;
+    }
+    else Wificommand = true;
+
+
+   if (Wificommand == false) {     
         Serial.write(udpBuffer, packetSize);  // forward the recieved data straight to the serial connection to the telescope mount
         ignore = true;    // we need to ignore the first characters that we get from the telescope mount (an echo of our command / garbage) until we get the "=" character that signals the beginning of the actual response
         delay(15);
+   }
+   else {
+    
+    udp.beginPacket(remoteIp, UDPremoteudpPort); 
+    udp.write("+CWMODE_CUR:1");
+    udp.endPacket();
+    yield();
+    delay(10);
+    udp.beginPacket(remoteIp, UDPremoteudpPort); 
+    udp.write("OK");
+    udp.endPacket();
+    yield();
+}
         }
    
   SerialSize = Serial.available();  // Test for Serial Data Received
