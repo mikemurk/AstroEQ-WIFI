@@ -1,0 +1,127 @@
+From IP: 192.168.4.100 / Port: 46289 - UDP Data: 58
+From IP: 192.168.4.100 / Port: 46289 - UDP Data: 101
+From IP: 192.168.4.100 / Port: 46289 - UDP Data: 49
+From IP: 192.168.4.100 / Port: 46289 - UDP Data: 13
+Serial Bytes Received: 8
+From MCB: 61
+From MCB: 51
+From MCB: 50
+From MCB: 48
+From MCB: 51
+From MCB: 48
+From MCB: 48
+From MCB: 13
+UDP Sending: 61
+UDP Sending: 51
+UDP Sending: 50
+UDP Sending: 48
+UDP Sending: 51
+UDP Sending: 48
+UDP Sending: 48
+
+UDP Sending: 13
+From IP: 192.168.4.100 / Port: 46289 - UDP Data: 58
+From IP: 192.168.4.100 / Port: 46289 - UDP Data: 101
+From IP: 192.168.4.100 / Port: 46289 - UDP Data: 49
+From IP: 192.168.4.100 / Port: 46289 - UDP Data: 13
+Serial Bytes Received: 8
+From MCB: 61
+From MCB: 51
+From MCB: 50
+From MCB: 48
+From MCB: 51
+From MCB: 48
+From MCB: 48
+From MCB: 13
+UDP Sending: 61
+UDP Sending: 51
+UDP Sending: 50
+UDP Sending: 48
+UDP Sending: 51
+UDP Sending: 48
+UDP Sending: 48
+
+UDP Sending: 13
+From IP: 192.168.4.100 / Port: 46289 - UDP Data: 58
+From IP: 192.168.4.100 / Port: 46289 - UDP Data: 101
+From IP: 192.168.4.100 / Port: 46289 - UDP Data: 49
+From IP: 192.168.4.100 / Port: 46289 - UDP Data: 13
+Serial Bytes Received: 8
+From MCB: 61
+From MCB: 51
+From MCB: 50
+From MCB: 48
+From MCB: 51
+From MCB: 48
+From MCB: 48
+From MCB: 13
+UDP Sending: 61
+UDP Sending: 51
+UDP Sending: 50
+UDP Sending: 48
+UDP Sending: 51
+UDP Sending: 48
+UDP Sending: 48
+
+UDP Sending: 13
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 58
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 113
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 49
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 49
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 13
+Serial Bytes Received: 2
+From MCB: 33
+From MCB: 13
+UDP Sending: 33
+UDP Sending: 13
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 58
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 113
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 49
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 49
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 13
+Serial Bytes Received: 2
+From MCB: 33
+From MCB: 13
+UDP Sending: 33
+UDP Sending: 13
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 58
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 113
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 49
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 49
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 13
+Serial Bytes Received: 2
+From MCB: 33
+From MCB: 13
+UDP Sending: 33
+UDP Sending: 13
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 58
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 113
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 49
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 49
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 48
+From IP: 192.168.4.100 / Port: 45674 - UDP Data: 13
+Serial Bytes Received: 2
+From MCB: 33
+From MCB: 13
+UDP Sending: 33
+UDP Sending: 13
