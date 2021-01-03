@@ -55,8 +55,8 @@ int UDPremoteudpPort;
 
 uint8_t udpBuffer[bufferSize];
 uint8_t udpIndex = 0;
-
-uint8_t serialBuffer[SerialBufferSize];
+char udpMessage[bufferSize];
+char serialBuffer[SerialBufferSize];
 uint8_t serialIndex = 0;
 
 byte data = 0;
@@ -65,7 +65,7 @@ boolean ignore = false;  // Because the mount connection seems to share the wire
 
 void setup() {
 
-  delay(1000);
+  delay(5000);
   Serial.begin(mountBaudRate);
   Serial.swap();  // This will set the hardware UART RX to pin D7 (GPIO_13) and TX to pin D8 (GPIO_15).
   logger = new SoftwareSerial(3, 1); // The original pins (RX/GPIO_3 and TX/_GPIO1) are now used by softwareserial for logging debug data to a computer
@@ -107,8 +107,8 @@ void loop()
         
         for (int j = 0; j < packetSize; j++)  // write it to the log for debugging purposes
               {
-                logger->print(udpBuffer[j]);
-                logger->print(" ");
+                udpMessage[j]=udpBuffer[j];
+;                logger->print(udpMessage[j]);
               }
         logger->println();
     if (udpBuffer[0] == 58) 
@@ -127,6 +127,8 @@ void loop()
     
     udp.beginPacket(remoteIp, UDPremoteudpPort); 
     udp.write("+CWMODE_CUR:1");
+    logger->print("Sent on UDP:                                     "); 
+    logger->println ("+CWMODE_CUR:1 - OK");
     udp.endPacket();
     yield();
     delay(10);
@@ -141,16 +143,16 @@ void loop()
 
   if (SerialSize > 0) 
   {                                                     // when data arrives from the mount via the serial port
-      logger ->print("Serial Bytes Received: ");
-      logger ->println(SerialSize);
-      serialIndex=0;
+      
 
-      logger ->print("From MCB:                                        ");
+      serialIndex=0;
+      logger ->print("Serial Bytes Received (");
+      logger ->print(SerialSize);
+      logger ->print(") From MCB:              ");
       for (int i = 0; i<SerialSize; i++)
             { 
-                byte data=Serial.read();
+                char data=Serial.read();
                 logger ->print(data);
-                logger ->print(" ");
                 serialBuffer[serialIndex] = data;
                 serialIndex++;
              }
@@ -160,15 +162,15 @@ void loop()
       if (firstChar == 61 || firstChar == 33) 
              {                                               // Now we send the message recieved from the telescope mount, as an UDP packet to the client app (via WiFi):
               udp.beginPacket(remoteIp, UDPremoteudpPort); 
- //             logger->print("UDP Sending:                                     ");
-              
- //             for (int j = 0; j < SerialSize; j++)
- //              {
- //                 logger->print(serialBuffer[j]);
- //                 logger->print(" ");
- //               }
-                
- //             logger->println();
+
+            logger->print("Sent on UDP:                                     ");             
+            for (int j = 0; j < SerialSize; j++)
+            {
+               udpMessage[j]=serialBuffer[j];
+               logger->print(serialBuffer[j]);
+
+            }
+                   logger->println();
               udp.write(serialBuffer, serialIndex);
               udp.endPacket();
               yield();
