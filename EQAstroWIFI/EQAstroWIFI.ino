@@ -107,7 +107,8 @@ void loop()
         
         for (int j = 0; j < packetSize; j++)  // write it to the log for debugging purposes
               {
-                udpMessage[j]=udpBuffer[j];
+                
+               udpMessage[j]=udpBuffer[j];
 ;                logger->print(udpMessage[j]);
               }
         logger->println();
@@ -126,15 +127,15 @@ void loop()
    else {
     
     udp.beginPacket(remoteIp, UDPremoteudpPort); 
-    udp.write("+CWMODE_CUR:1");
+    udp.write("+CWMODE_CUR:1\r\nOK\r\n");
     logger->print("Sent on UDP:                                     "); 
-    logger->println ("+CWMODE_CUR:1 - OK");
+    logger->println ("+CWMODE_CUR:1\r\n");
     udp.endPacket();
     yield();
     delay(10);
-    udp.beginPacket(remoteIp, UDPremoteudpPort); 
-    udp.write("OK");
-    udp.endPacket();
+ //   udp.beginPacket(remoteIp, UDPremoteudpPort); 
+//    udp.write("OK");
+ //   udp.endPacket();
     yield();
 }
         }
